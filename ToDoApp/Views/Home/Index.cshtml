@@ -1,8 +1,19 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@using ToDoApp.Models.Authentication
+@inject SignInManager<AppUser> SignInManager
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>You can manage your to-do list in this app.</p>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <p>Please go to your to-do list page. <a asp-area="" asp-controller="ToDos" asp-action="Index">You can click here to go.</a></p>
+    }
+    else
+    {
+        <p>Please login to the application to use. <a asp-area="" asp-controller="Auth" asp-action="Login">You can click here to go.</a></p>
+    }
 </div>
