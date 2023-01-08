@@ -1,0 +1,31 @@
+﻿@model ToDoApp.Models.ViewModels.RegisterViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h3>Register</h3>
+
+<hr />
+<form asp-action="Register">
+    <table>
+        <tr>
+            <td colspan="3"><div asp-validation-summary="All"></div></td>
+        </tr>
+        <tr>
+            <td><label asp-for="UserName"></label></td>
+            <td><input asp-for="UserName" /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Email"></label></td>
+            <td><input asp-for="Email" /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Password"></label></td>
+            <td><input asp-for="Password" /></td>
+        </tr>
+        <tr>
+            <td colspan="3"><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>

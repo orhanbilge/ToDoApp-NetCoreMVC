@@ -1,0 +1,31 @@
+﻿@model ToDoApp.Models.ViewModels.LoginViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h3>Login</h3>
+
+<hr />
+<form asp-action="Login">
+    <table>
+        <tr>
+            <td colspan="3"><div asp-validation-summary="All"></div></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Email"></label></td>
+            <td><input asp-for="Email" /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Password"></label></td>
+            <td><input asp-for="Password" /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="RememberMe"></label></td>
+            <td><input asp-for="RememberMe" /></td>
+        </tr>
+        <tr>
+            <td colspan="3"><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>

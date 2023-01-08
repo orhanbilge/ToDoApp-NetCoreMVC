@@ -1,7 +1,28 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using ToDoApp.Models;
+using ToDoApp.Models.Authentication;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<AppDbContext>(config => config.UseSqlServer(builder.Configuration.GetConnectionString("default")));
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>();
+builder.Services.ConfigureApplicationCookie(cookie =>
+{
+    cookie.LoginPath = new PathString("/Auth/Login");
+    cookie.Cookie = new CookieBuilder
+    {
+        Name = "ToDoApp",
+        HttpOnly = false,
+        SameSite = SameSiteMode.Lax,
+        SecurePolicy = CookieSecurePolicy.Always
+    };
+    cookie.SlidingExpiration = true;
+    cookie.ExpireTimeSpan = TimeSpan.FromMinutes(2);
+});
 
 var app = builder.Build();
 
@@ -18,6 +39,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
