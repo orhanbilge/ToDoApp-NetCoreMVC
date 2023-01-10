@@ -1,0 +1,22 @@
+﻿@model ToDoApp.Models.Entity.ToDo
+@{
+    ViewData["Title"] = "Create To-Do";
+}
+
+<h3>Create a new To-Do item</h3>
+
+<hr />
+<form asp-action="Create">
+    <table>
+        <tr>
+            <td colspan="3"><div asp-validation-summary="All"></div></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Description"></label></td>
+            <td><input asp-for="Description" /></td>
+        </tr>
+        <tr>
+            <td colspan="3"><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
